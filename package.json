@@ -1,0 +1,20 @@
+{
+  "name": "@lahav/auto-pagination",
+  "version": "1.0.0",
+  "description": "A library that enables users to have auto pagination of elements inside a div",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "segev",
+    "lahav",
+    "auto",
+    "pagination",
+    "paging",
+    "paginator"
+  ],
+  "author": "Segev Lahav & Bar Yochai Bokovza",
+  "license": "Apache-2.0"
+}
