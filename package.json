@@ -6,6 +6,7 @@
   "main": "dist/main.js",
   "module": "dist/module.js",
   "types": "dist/main.d.ts",
+  "repository": "https://github.com/bar-boko/auto-pagination",
   "files": [
     "dist",
     "README.md"
