@@ -5,7 +5,7 @@ import PaginationComponent from '.';
 export default ({
     title: 'Pagination',
     component: PaginationComponent,
-})
+});
 
 const Item = styled.span`
     display: block;
@@ -101,10 +101,6 @@ const PageContainer = styled.div`
     flex-direction: column;
 `;
 
-const StyledPagination = styled(PaginationComponent)`
-    flex: 1;
-`;
-
 const PageNumberButton = styled.button`
     border-radius: 5px;
     background: #0857c3;
@@ -133,12 +129,14 @@ export const Pagination = () => {
 
     return (
         <PageContainer>
-            <StyledPagination
+            <PaginationComponent
                 page={page}
                 onPagesChange={setPages}
+                transitionDuration="2s"
+                transitionTimingFunction="ease-in-out"
             >
                 <DemoChildren />
-            </StyledPagination>
+            </PaginationComponent>
             <div>
                 {
                     Array.from(Array(pages).keys()).map(pageNumber => (

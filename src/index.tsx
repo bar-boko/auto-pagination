@@ -1,9 +1,15 @@
-import React, { ReactNode, Dispatch, useRef, useMemo, useEffect } from 'react';
+import { ReactNode, Dispatch, useRef, useMemo, useEffect } from 'react';
 import styled from '@emotion/styled';
+import { Property } from 'csstype';
 import { useWidthResizeObserver } from './hooks/ResizeHooks';
+
+export type TransitionDuration = Property.TransitionDuration<string & {}>;
+export type TransitionTimingFunction = Property.TransitionTimingFunction;
 
 interface PaginationStyleProps {
   transformWidth: number;
+  transitionDuration?: TransitionDuration | TransitionDuration[];
+  transitionTimingFunction?: TransitionTimingFunction | TransitionTimingFunction[];
 }
 
 const PaginationStyle = styled.div`
@@ -12,7 +18,18 @@ const PaginationStyle = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   transform: translateX(-${({ transformWidth }: PaginationStyleProps) => transformWidth}px);
-  transition: transform 1s ease-in-out;
+  
+  ${({ transitionDuration, transitionTimingFunction}: PaginationStyleProps) => {
+    if (!transitionDuration || !transitionTimingFunction) {
+      return '';
+    }
+
+    return `
+      transition-duration: ${transitionDuration};
+      transition-property: transform;
+      transition-timing-function: ${transitionTimingFunction};
+    `;
+  }}
 `;
 
 const ContainerStyle = styled.div`
@@ -23,6 +40,8 @@ interface PaginationProps {
     children: ReactNode | ReactNode[];
     onPagesChange: Dispatch<number>;
     page?: number;
+    transitionDuration?: TransitionDuration | TransitionDuration[];
+    transitionTimingFunction?: TransitionTimingFunction | TransitionTimingFunction[];
 }
 
 const INVALID_BOX_WIDTH = 0;
@@ -30,13 +49,13 @@ const DEFAULT_PAGES = 1;
 const DEFAULT_PAGE = 0;
 
 const Pagination = ((props: PaginationProps) => {
-    const { children, onPagesChange, page } = props;
+    const { children, onPagesChange, page, transitionDuration, transitionTimingFunction } = props;
 
     const ref = useRef<HTMLDivElement>({} as HTMLDivElement);
     const { boxWidth, scrollWidth } = useWidthResizeObserver(ref);
 
     const pages: number = useMemo(() => (
-      boxWidth === INVALID_BOX_WIDTH
+      boxWidth <= INVALID_BOX_WIDTH
         ? DEFAULT_PAGES
         : Math.round(scrollWidth / boxWidth)
     ), [boxWidth, scrollWidth]);
@@ -52,7 +71,12 @@ const Pagination = ((props: PaginationProps) => {
 
     return (
         <ContainerStyle>
-            <PaginationStyle ref={ref} transformWidth={currentPageWidth}>
+            <PaginationStyle 
+              ref={ref}
+              transformWidth={currentPageWidth}
+              transitionDuration={transitionDuration}
+              transitionTimingFunction={transitionTimingFunction}
+            >
                 { children }
             </PaginationStyle>
         </ContainerStyle>
