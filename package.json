@@ -2,7 +2,7 @@
   "name": "@lahav/auto-pagination",
   "version": "1.0.0",
   "description": "A library that enables users to have auto pagination of elements inside a div",
-  "source": "src/index.ts",
+  "source": "src/index.tsx",
   "main": "dist/main.js",
   "module": "dist/module.js",
   "types": "dist/main.d.ts",
@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1"
+    "@emotion/styled": "^11.8.1",
+    "@juggle/resize-observer": "^3.3.1"
   }
 }
