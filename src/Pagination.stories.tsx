@@ -133,7 +133,7 @@ export const Pagination = () => {
                 page={page}
                 onPagesChange={setPages}
                 transitionDuration="2s"
-                transitionTimingFunction="ease-in-out"
+                transitionTimingFunction="cubic-bezier(0.48, 1.48, 0.54,-0.59)"
             >
                 <DemoChildren />
             </PaginationComponent>

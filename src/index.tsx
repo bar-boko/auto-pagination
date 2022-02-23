@@ -18,18 +18,9 @@ const PaginationStyle = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   transform: translateX(-${({ transformWidth }: PaginationStyleProps) => transformWidth}px);
-  
-  ${({ transitionDuration, transitionTimingFunction}: PaginationStyleProps) => {
-    if (!transitionDuration || !transitionTimingFunction) {
-      return '';
-    }
-
-    return `
-      transition-duration: ${transitionDuration};
-      transition-property: transform;
-      transition-timing-function: ${transitionTimingFunction};
-    `;
-  }}
+  transition-property: transform;
+  transition-duration: ${({ transitionDuration }: PaginationStyleProps) => transitionDuration};
+  transition-timing-function: ${({ transitionTimingFunction }: PaginationStyleProps) => transitionTimingFunction ?? 'ease-in-out'};
 `;
 
 const ContainerStyle = styled.div`
