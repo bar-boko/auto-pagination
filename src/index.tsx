@@ -17,7 +17,7 @@ const PaginationStyle = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  transform: translateX(-${({ transformWidth }: PaginationStyleProps) => transformWidth}px);
+  transform: translateX(${({ transformWidth }: PaginationStyleProps) => transformWidth}px);
   transition-property: transform;
   transition-duration: ${({ transitionDuration }: PaginationStyleProps) => transitionDuration};
   transition-timing-function: ${({ transitionTimingFunction }: PaginationStyleProps) => transitionTimingFunction ?? 'ease-in-out'};
@@ -33,6 +33,7 @@ interface PaginationProps {
     page?: number;
     transitionDuration?: TransitionDuration | TransitionDuration[];
     transitionTimingFunction?: TransitionTimingFunction | TransitionTimingFunction[];
+    rtl?: boolean; 
 }
 
 const INVALID_BOX_WIDTH = 0;
@@ -40,7 +41,7 @@ const DEFAULT_PAGES = 1;
 const DEFAULT_PAGE = 0;
 
 const Pagination = ((props: PaginationProps) => {
-    const { children, onPagesChange, page, transitionDuration, transitionTimingFunction } = props;
+    const { children, onPagesChange, page, transitionDuration, transitionTimingFunction, rtl } = props;
 
     const ref = useRef<HTMLDivElement>({} as HTMLDivElement);
     const { boxWidth, scrollWidth } = useWidthResizeObserver(ref);
@@ -64,7 +65,7 @@ const Pagination = ((props: PaginationProps) => {
         <ContainerStyle>
             <PaginationStyle 
               ref={ref}
-              transformWidth={currentPageWidth}
+              transformWidth={rtl ? currentPageWidth : -1 * currentPageWidth}
               transitionDuration={transitionDuration}
               transitionTimingFunction={transitionTimingFunction}
             >
