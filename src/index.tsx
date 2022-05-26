@@ -21,6 +21,10 @@ const PaginationStyle = styled.div`
   transition-property: transform;
   transition-duration: ${({ transitionDuration }: PaginationStyleProps) => transitionDuration};
   transition-timing-function: ${({ transitionTimingFunction }: PaginationStyleProps) => transitionTimingFunction ?? 'ease-in-out'};
+
+  & > * {
+    width: 100%;
+  }
 `;
 
 const ContainerStyle = styled.div`
