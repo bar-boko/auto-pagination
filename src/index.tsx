@@ -28,6 +28,9 @@ const PaginationStyle = styled.div`
 `;
 
 const ContainerStyle = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   overflow-x: hidden;
 `;
 
