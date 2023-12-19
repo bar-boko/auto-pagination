@@ -13,9 +13,9 @@ const Item = styled.span`
     color: white;
     font-size: 16pt;
     font-family: Arial, sans-serif;
-    margin: 5px;
     border-radius: 10px;
     padding: 5px;
+    margin: 5px 0;
     box-sizing: border-box;
 `;
 
