@@ -64,3 +64,4 @@ dist/
 .cache/
 
 .parcel-cache/
+.idea

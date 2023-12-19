@@ -28,10 +28,13 @@ const PaginationStyle = styled.div`
 `;
 
 const ContainerStyle = styled.div`
-  overflow-x: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow-x: hidden;
 `;
 
-interface PaginationProps {
+export interface PaginationProps {
     children: ReactNode | ReactNode[];
     onPagesChange: Dispatch<number>;
     page?: number;
@@ -73,7 +76,9 @@ const Pagination = ((props: PaginationProps) => {
               transitionDuration={transitionDuration}
               transitionTimingFunction={transitionTimingFunction}
             >
-                { children }
+                <>
+                    { children }
+                </>
             </PaginationStyle>
         </ContainerStyle>
     );
